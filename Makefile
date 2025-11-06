@@ -13,9 +13,6 @@ CPPFLAGS = -Iheaders/
 # -g : Incluir símbolos de debug (útil se o programa falhar)
 CXXFLAGS = -std=c++17 -Wall -Wextra -g
 
-# Flags do Linker (nenhuma especial necessária aqui)
-LDFLAGS = 
-
 # --- Variáveis do Projeto ---
 
 # Nome do programa executável final
@@ -43,14 +40,11 @@ OBJS = $(SRCS:src/%.cpp=$(OBJ_DIR)/%.o)
 # Ela é executada se você digitar apenas "make".
 all: $(TARGET)
 
-# Regra para linkar o executável final:
 # Depende de todos os arquivos objeto (.o).
-# $(LDFLAGS): Nossas flags de linker
 # -o $@ : O nome do arquivo de saída (o Target, 'meu_programa')
 # $^ : Todos os pré-requisitos (todos os .o da lista OBJS)
 $(TARGET): $(OBJS)
-	@echo "LINKANDO => $@"
-	$(CXX) $(LDFLAGS) -o $@ $^
+	$(CXX) -o $@ $^
 
 # Regra padrão para compilar um .cpp de 'src/' para um .o em 'obj/'
 # Ex: obj/main.o depende de src/main.cpp
